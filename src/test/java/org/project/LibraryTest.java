@@ -49,4 +49,19 @@ public class LibraryTest {
         });
         assertTrue(exception.getMessage().contains("Book with ISBN: 1234 is already there"));
     }
+
+    @Test
+    public void testFindBookByTitleIfAvailable(){
+
+        Book book1 = new Book("1234", "MyBook", "Pranav", 2021);
+        Book book2 = new Book("1235", "MyBook", "Pranav", 2021);
+        library.addBook(book1);
+        library.addBook(book2);
+
+        String actualIsbn = library.findBookByTitle("MyBook");
+        String expectedIsbn = "1234";
+
+        assertEquals(expectedIsbn, actualIsbn);
+
+    }
 }
