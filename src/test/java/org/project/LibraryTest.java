@@ -12,33 +12,42 @@ public class LibraryTest {
 
     @Test
     public void testZeroBookAvailable(){
+
         int expected = 0;
         int actual = library.getTotalBooks();
+
         assertEquals(expected, actual);
     }
 
     @Test
     public void testAdd1Book(){
+
         Book book = new Book("1234", "MyBook", "Pranav", 2021);
         library.addBook(book);
+
         int expected = 1;
         int actual = library.getTotalBooks();
+
         assertEquals(expected, actual);
     }
 
     @Test
     public void testAdd2BooksWithUniqueIsbn(){
+
         Book book1 = new Book("1234", "MyBook", "Pranav", 2021);
         Book book2 = new Book("1235", "MyBook", "Pranav", 2021);
         library.addBook(book1);
         library.addBook(book2);
+
         int expected = 2;
         int actual = library.getTotalBooks();
+
         assertEquals(expected, actual);
     }
 
     @Test
     public void testAdd2BooksWithSameIsbn(){
+
         Book book1 = new Book("1234", "MyBook", "Pranav", 2021);
         Book book2 = new Book("1234", "MyBook", "Pranav", 2021);
 
@@ -58,10 +67,26 @@ public class LibraryTest {
         library.addBook(book1);
         library.addBook(book2);
 
-        String actualIsbn = library.findBookByTitle("MyBook");
+        String checkTitle = "MyBook";
+
+        String actualIsbn = library.findBookByTitle(checkTitle);
         String expectedIsbn = "1234";
 
         assertEquals(expectedIsbn, actualIsbn);
-
     }
+
+    @Test
+    public void testFindBookByTitleIfNotAvailable(){
+
+        Book book1 = new Book("1234", "MyBook", "Pranav", 2021);
+        library.addBook(book1);
+
+        String checkTitle = "HelloBook";
+
+        String actualIsbn = library.findBookByTitle(checkTitle);
+
+        assertNull(actualIsbn);
+    }
+
+
 }
