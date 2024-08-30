@@ -24,4 +24,15 @@ public class LibraryTest {
         int actual = library.getTotalBooks();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testAdd2BooksWithUniqueIsbn(){
+        Book book1 = new Book("1234", "MyBook", "Pranav", 2021);
+        Book book2 = new Book("1235", "MyBook", "Pranav", 2021);
+        library.addBook(book1);
+        library.addBook(book2);
+        int expected = 2;
+        int actual = library.getTotalBooks();
+        assertEquals(expected, actual);
+    }
 }
