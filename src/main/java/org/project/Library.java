@@ -1,6 +1,7 @@
 package org.project;
 
-import org.project.exceptions.NonUniqueIsbn;
+import org.project.exceptions.BookNotFoundException;
+import org.project.exceptions.NonUniqueIsbnException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class Library {
         boolean isDuplicate = availableBooks.containsKey(isbn);
 
         if(isDuplicate){
-            throw new NonUniqueIsbn("Book with ISBN: "+isbn+" is already there");
+            throw new NonUniqueIsbnException("Book with ISBN: "+isbn+" is already there");
         }
         availableBooks.put(isbn, book);
     }
@@ -48,10 +49,15 @@ public class Library {
     public void borrowBook(String bookTitle) {
 
         String isbn = findBookByTitle(bookTitle);
-        Book book = availableBooks.get(isbn);
+        if(isbn!=null){
+            Book book = availableBooks.get(isbn);
 
-        borrowedBooks.put(isbn, book);
-        availableBooks.remove(isbn);
+            borrowedBooks.put(isbn, book);
+            availableBooks.remove(isbn);
+        }
+        else{
+            throw new BookNotFoundException("Book with given title is not available right now");
+        }
 
     }
 }

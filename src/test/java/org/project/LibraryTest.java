@@ -1,7 +1,8 @@
 package org.project;
 
 import org.junit.jupiter.api.Test;
-import org.project.exceptions.NonUniqueIsbn;
+import org.project.exceptions.BookNotFoundException;
+import org.project.exceptions.NonUniqueIsbnException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,7 +54,7 @@ public class LibraryTest {
 
         library.addBook(book1);
 
-        Exception exception = assertThrows(NonUniqueIsbn.class, ()->{
+        Exception exception = assertThrows(NonUniqueIsbnException.class, ()->{
             library.addBook(book2);
         });
         assertTrue(exception.getMessage().contains("Book with ISBN: 1234 is already there"));
@@ -120,6 +121,19 @@ public class LibraryTest {
 
         assertEquals(expectedAvailableBooks, actualAvailableBooks);
         assertEquals(expectedBorrowedBooks, actualBorrowedBooks);
+    }
+
+    @Test
+    public void testBorrowBookIfNotAvailable(){
+        Book book1 = new Book("1234", "PranavBook", "Pranav", 2021);
+
+        String bookTitle = "PratikBook";
+
+        Exception exception = assertThrows(BookNotFoundException.class, ()->{
+            library.borrowBook(bookTitle);
+        });
+        assertTrue(exception.getMessage().contains("Book with given title is not available right now"));
+
     }
 
 }
