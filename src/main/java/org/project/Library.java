@@ -10,9 +10,9 @@ public class Library {
     private Map<String, Book> availableBooks = new LinkedHashMap<>();
     private Map<String, Book> borrowedBooks = new LinkedHashMap<>();
 
-    public int getTotalAvailabelBooks(){
-        int totalAvailabelBooks = availableBooks.size();
-        return totalAvailabelBooks;
+    public int getTotalAvailableBooks(){
+        int totalAvailableBooks = availableBooks.size();
+        return totalAvailableBooks;
     }
 
     public int getTotalBorrowedBooks(){
@@ -45,5 +45,13 @@ public class Library {
         return null;
     }
 
+    public void borrowBook(String bookTitle) {
 
+        String isbn = findBookByTitle(bookTitle);
+        Book book = availableBooks.get(isbn);
+
+        borrowedBooks.put(isbn, book);
+        availableBooks.remove(isbn);
+
+    }
 }
