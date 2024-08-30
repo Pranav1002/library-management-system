@@ -1,8 +1,9 @@
 package org.project;
 
 import org.junit.jupiter.api.Test;
+import org.project.exceptions.NonUniqueIsbn;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class LibraryTest {
@@ -34,5 +35,18 @@ public class LibraryTest {
         int expected = 2;
         int actual = library.getTotalBooks();
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testAdd2BooksWithSameIsbn(){
+        Book book1 = new Book("1234", "MyBook", "Pranav", 2021);
+        Book book2 = new Book("1234", "MyBook", "Pranav", 2021);
+
+        library.addBook(book1);
+
+        Exception exception = assertThrows(NonUniqueIsbn.class, ()->{
+            library.addBook(book2);
+        });
+        assertTrue(exception.getMessage().contains("Book with ISBN: 1234 is already there"));
     }
 }
