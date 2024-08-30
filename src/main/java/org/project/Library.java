@@ -8,6 +8,13 @@ public class Library {
     Map<String, Book> availableBooks = new HashMap<>();
 
     public int getTotalBooks(){
-        return availableBooks.size();
+        int totalBooks = availableBooks.size();
+        return totalBooks;
+    }
+
+    public void addBook(Book book) {
+
+        String isbn = book.getIsbn();
+        availableBooks.put(isbn, book);
     }
 }

@@ -11,6 +11,17 @@ public class LibraryTest {
 
     @Test
     public void testZeroBookAvailable(){
-        assertEquals(0, library.getTotalBooks());
+        int expected = 0;
+        int actual = library.getTotalBooks();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testAdd1Book(){
+        Book book = new Book("1234", "MyBook", "Pranav", 2021);
+        library.addBook(book);
+        int expected = 1;
+        int actual = library.getTotalBooks();
+        assertEquals(expected, actual);
     }
 }
