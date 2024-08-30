@@ -14,7 +14,7 @@ public class LibraryTest {
     public void testZeroBookAvailable(){
 
         int expected = 0;
-        int actual = library.getTotalBooks();
+        int actual = library.getTotalAvailabelBooks();
 
         assertEquals(expected, actual);
     }
@@ -26,7 +26,7 @@ public class LibraryTest {
         library.addBook(book);
 
         int expected = 1;
-        int actual = library.getTotalBooks();
+        int actual = library.getTotalAvailabelBooks();
 
         assertEquals(expected, actual);
     }
@@ -40,7 +40,7 @@ public class LibraryTest {
         library.addBook(book2);
 
         int expected = 2;
-        int actual = library.getTotalBooks();
+        int actual = library.getTotalAvailabelBooks();
 
         assertEquals(expected, actual);
     }
@@ -84,9 +84,20 @@ public class LibraryTest {
         String checkTitle = "HelloBook";
 
         String actualIsbn = library.findBookByTitle(checkTitle);
-
         assertNull(actualIsbn);
     }
+
+    @Test
+    public void testZeroBookBorrowed(){
+        Book book = new Book("1234", "MyBook", "Pranav", 2021);
+        library.addBook(book);
+
+        int expectedValue = 0;
+        int actualValue = library.getTotalBorrowedBooks();
+
+        assertEquals(expectedValue, actualValue);
+    }
+
 
 
 }

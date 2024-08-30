@@ -7,12 +7,17 @@ import java.util.Map;
 
 public class Library {
 
-    Map<String, Book> availableBooks = new LinkedHashMap<>();
-    Map<String, Book> borrowedBooks = new LinkedHashMap<>();
+    private Map<String, Book> availableBooks = new LinkedHashMap<>();
+    private Map<String, Book> borrowedBooks = new LinkedHashMap<>();
 
-    public int getTotalBooks(){
-        int totalBooks = availableBooks.size();
-        return totalBooks;
+    public int getTotalAvailabelBooks(){
+        int totalAvailabelBooks = availableBooks.size();
+        return totalAvailabelBooks;
+    }
+
+    public int getTotalBorrowedBooks(){
+        int totalBorrowedBooks = borrowedBooks.size();
+        return totalBorrowedBooks;
     }
 
     public void addBook(Book book) {
@@ -39,4 +44,6 @@ public class Library {
         }
         return null;
     }
+
+
 }
