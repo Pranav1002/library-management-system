@@ -16,6 +16,11 @@ public class Book {
     private int publicationYear;
 
     public Book(String isbn, String title, String author, int publicationYear) {
+
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("ISBN cannot be null or empty.");
+        }
+
         this.isbn = isbn;
         this.title = title;
         this.author = author;

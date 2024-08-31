@@ -227,4 +227,26 @@ public class LibraryTest {
         assertTrue(exception.getMessage().contains("There is no book available right now. You can add a new book."));
     }
 
+    @Test
+    public void testCreateBookWithInvalidIsbn(){
+        Exception emptyIsbn = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("", "PranavBook", "Pranav", 2021);
+        });
+
+        Exception spaceIsbn = assertThrows(IllegalArgumentException.class, ()->{
+            new Book(" ", "PranavBook", "Pranav", 2021);
+        });
+
+        Exception nullIsbn = assertThrows(IllegalArgumentException.class, ()->{
+            new Book(null, "PranavBook", "Pranav", 2021);
+        });
+
+
+        assertTrue(spaceIsbn.getMessage().contains("ISBN cannot be null or empty."));
+        assertTrue(emptyIsbn.getMessage().contains("ISBN cannot be null or empty."));
+        assertTrue(nullIsbn.getMessage().contains("ISBN cannot be null or empty."));
+    }
+
+
+
 }
