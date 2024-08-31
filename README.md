@@ -61,31 +61,5 @@ This project includes a suite of unit tests to verify the functionality of the L
   ```
 - This will run all the tests present in 'src/test/java' directory.
 
-## Project Structure
 
-library-management-system/
-│
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── org/
-│   │           └── project/
-│   │               ├── Book.java
-│   │               ├── Library.java
-│   │               └── exceptions/
-│   │                   ├── BookNotFoundException.java
-│   │                   ├── NoBooksAvailableException.java
-│   │                   └── NonUniqueIsbnException.java
-│   │              
-│   │
-│   └── test/
-│       └── java/
-│           └── org/
-│               └── project/
-│                   └── LibraryTest.java
-│
-├── pom.xml
-└── README.md
-
-
-## Thank you 
+# Thank you 
