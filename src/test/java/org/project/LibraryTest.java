@@ -171,5 +171,23 @@ public class LibraryTest {
 
     }
 
+    @Test
+    public void testReturnBookIfNotBorrowed(){
+        Book book1 = new Book("1234", "PranavBook", "Pranav", 2021);
+        Book book2 = new Book("4321", "PratikBook", "Pratik", 2022);
+
+        library.addBook(book1);
+        library.addBook(book2);
+
+        String bookTitle = "PranavBook";
+        library.borrowBook(bookTitle);
+
+        Exception exception = assertThrows(BookNotFoundException.class, ()->{
+            String returnIsbn = "5678";
+            library.returnBook(returnIsbn);
+        });
+        assertTrue(exception.getMessage().contains("Book with ISBN: 5678 is not borrowed. You can add this as a new book"));
+    }
+
 
 }

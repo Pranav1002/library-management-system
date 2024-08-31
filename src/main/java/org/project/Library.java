@@ -63,8 +63,13 @@ public class Library {
 
     public void returnBook(String isbn) {
 
-        Book book = borrowedBooks.get(isbn);
-        borrowedBooks.remove(isbn);
-        availableBooks.put(isbn, book);
+        if(borrowedBooks.containsKey(isbn)){
+            Book book = borrowedBooks.get(isbn);
+            borrowedBooks.remove(isbn);
+            availableBooks.put(isbn, book);
+        }
+        else{
+            throw new BookNotFoundException("Book with ISBN: "+isbn+" is not borrowed. You can add this as a new book");
+        }
     }
 }
