@@ -1,6 +1,7 @@
 package org.project;
 
 import org.project.exceptions.BookNotFoundException;
+import org.project.exceptions.NoBooksAvailableException;
 import org.project.exceptions.NonUniqueIsbnException;
 
 import java.util.HashSet;
@@ -77,8 +78,15 @@ public class Library {
 
     public Set<Book> viewAvailableBooks() {
 
-        Set<Book> showAvailableBooks = new HashSet<>(availableBooks.values());
+        Boolean isBookAvailable = !availableBooks.isEmpty();
 
-        return showAvailableBooks;
+        if(isBookAvailable){
+            Set<Book> showAvailableBooks = new HashSet<>(availableBooks.values());
+
+            return showAvailableBooks;
+        }
+        else{
+            throw new NoBooksAvailableException();
+        }
     }
 }

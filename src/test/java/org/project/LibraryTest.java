@@ -3,6 +3,7 @@ package org.project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.project.exceptions.BookNotFoundException;
+import org.project.exceptions.NoBooksAvailableException;
 import org.project.exceptions.NonUniqueIsbnException;
 
 import java.util.HashSet;
@@ -218,5 +219,12 @@ public class LibraryTest {
         assertEquals(expectedAvailableBooks, actualAvailableBooks);
     }
 
+    @Test
+    public void testViewAvailableBooksIfNotAvailable(){
+        Exception exception = assertThrows(NoBooksAvailableException.class, ()->{
+            library.viewAvailableBooks();
+        });
+        assertTrue(exception.getMessage().contains("There is no book available right now. You can add a new book."));
+    }
 
 }
