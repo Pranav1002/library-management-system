@@ -42,9 +42,9 @@ To run this project, you need to have the following software installed:
    ```
   
 2. **Navigate to the Project Directory:**
-  ```
-  cd library-management-system
-  ```
+   ```
+   cd library-management-system
+   ```
 
 3. **Build the Project:**
    ```
