@@ -247,6 +247,26 @@ public class LibraryTest {
         assertTrue(nullIsbn.getMessage().contains("ISBN cannot be null or empty."));
     }
 
+    @Test
+    public void testCreateBookWithInvalidTitle(){
+        Exception emptyTitle = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "", "Pranav", 2021);
+        });
+
+        Exception spaceTitle = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", " ", "Pranav", 2021);
+        });
+
+        Exception nullTitle = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", null, "Pranav", 2021);
+        });
+
+
+        assertTrue(spaceTitle.getMessage().contains("Title cannot be null or empty."));
+        assertTrue(emptyTitle.getMessage().contains("Title cannot be null or empty."));
+        assertTrue(nullTitle.getMessage().contains("Title cannot be null or empty."));
+    }
+
 
 
 }

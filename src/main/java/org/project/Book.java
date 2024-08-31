@@ -21,6 +21,10 @@ public class Book {
             throw new IllegalArgumentException("ISBN cannot be null or empty.");
         }
 
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty.");
+        }
+
         this.isbn = isbn;
         this.title = title;
         this.author = author;
