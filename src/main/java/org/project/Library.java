@@ -3,8 +3,10 @@ package org.project;
 import org.project.exceptions.BookNotFoundException;
 import org.project.exceptions.NonUniqueIsbnException;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Library {
 
@@ -71,5 +73,12 @@ public class Library {
         else{
             throw new BookNotFoundException("Book with ISBN: "+isbn+" is not borrowed. You can add this as a new book");
         }
+    }
+
+    public Set<Book> viewAvailableBooks() {
+
+        Set<Book> showAvailableBooks = new HashSet<>(availableBooks.values());
+
+        return showAvailableBooks;
     }
 }

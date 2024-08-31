@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.project.exceptions.BookNotFoundException;
 import org.project.exceptions.NonUniqueIsbnException;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -187,6 +190,32 @@ public class LibraryTest {
             library.returnBook(returnIsbn);
         });
         assertTrue(exception.getMessage().contains("Book with ISBN: 5678 is not borrowed. You can add this as a new book"));
+    }
+
+    @Test
+    public void testViewAvailableBooksIfAvailable(){
+        Book book1 = new Book("1234", "PranavBook", "Pranav", 2021);
+        Book book2 = new Book("1235", "PranavBook", "Pranav", 2021);
+        Book book3 = new Book("4321", "PratikBook", "Pratik", 2022);
+        Book book4 = new Book("5678", "VedBook", "Ved", 2022);
+
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
+
+        String book1Title = "PratikBook";
+        String book2Title = "PranavBook";
+        library.borrowBook(book1Title);
+        library.borrowBook(book2Title);
+
+        Set<Book> expectedAvailableBooks = new HashSet<>();
+        expectedAvailableBooks.add(book2);
+        expectedAvailableBooks.add(book4);
+
+        Set<Book> actualAvailableBooks = library.viewAvailableBooks();
+
+        assertEquals(expectedAvailableBooks, actualAvailableBooks);
     }
 
 
