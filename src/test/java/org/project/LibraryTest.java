@@ -287,5 +287,23 @@ public class LibraryTest {
         assertTrue(nullAuthor.getMessage().contains("Author cannot be null or empty."));
     }
 
+    @Test
+    public void testCreateBookWithInvalidPublicationYear(){
+        Exception zeroYear = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "PranavBook", "Pranav", 0);
+        });
+
+        Exception negativeYear = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "PranavBook", "Pranav", -5);
+        });
+
+        Exception futureYear = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "PranavBook", "Pranav", 2030);
+        });
+
+        assertTrue(zeroYear.getMessage().contains("Given year is invalid."));
+        assertTrue(negativeYear.getMessage().contains("Given year is invalid."));
+        assertTrue(futureYear.getMessage().contains("Given year is invalid."));
+    }
 
 }

@@ -1,9 +1,10 @@
 package org.project;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.Year;
 
 //Constructor, getters and setters are added using lombok
 @Getter
@@ -26,6 +27,10 @@ public class Book {
         if (author == null || author.trim().isEmpty()) {
             throw new IllegalArgumentException("Author cannot be null or empty.");
         }
+        if (publicationYear<1 || publicationYear> Year.now().getValue()) {
+            throw new IllegalArgumentException("Given year is invalid.");
+        }
+
 
         this.isbn = isbn;
         this.title = title;
