@@ -60,4 +60,11 @@ public class Library {
         }
 
     }
+
+    public void returnBook(String isbn) {
+
+        Book book = borrowedBooks.get(isbn);
+        borrowedBooks.remove(isbn);
+        availableBooks.put(isbn, book);
+    }
 }

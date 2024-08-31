@@ -1,5 +1,6 @@
 package org.project;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.project.exceptions.BookNotFoundException;
 import org.project.exceptions.NonUniqueIsbnException;
@@ -9,7 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
 
-    Library library = new Library();
+    Library library;
+
+    @BeforeEach
+    void setup(){
+        library = new Library();
+    }
 
     @Test
     public void testZeroBookAvailable(){
@@ -135,5 +141,35 @@ public class LibraryTest {
         assertTrue(exception.getMessage().contains("Book with given title is not available right now"));
 
     }
+
+    @Test
+    public void testReturnBookIfBorrowed(){
+        Book book1 = new Book("1234", "PranavBook", "Pranav", 2021);
+        Book book2 = new Book("1235", "PranavBook", "Pranav", 2021);
+        Book book3 = new Book("4321", "PratikBook", "Pratik", 2022);
+
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+
+        String book1Title = "PratikBook";
+        String book2Title = "PranavBook";
+        library.borrowBook(book1Title);
+        library.borrowBook(book2Title);
+
+        String returnIsbn = "4321";
+        library.returnBook(returnIsbn);
+
+        int expectedAvailableBooks = 2;
+        int actualAvailableBooks = library.getTotalAvailableBooks();
+
+        int expectedBorrowedBooks = 1;
+        int actualBorrowedBooks = library.getTotalBorrowedBooks();
+
+        assertEquals(expectedAvailableBooks, actualAvailableBooks);
+        assertEquals(expectedBorrowedBooks, actualBorrowedBooks);
+
+    }
+
 
 }
