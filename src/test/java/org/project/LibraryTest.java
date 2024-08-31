@@ -267,6 +267,25 @@ public class LibraryTest {
         assertTrue(nullTitle.getMessage().contains("Title cannot be null or empty."));
     }
 
+    @Test
+    public void testCreateBookWithInvalidAuthor(){
+        Exception emptyAuthor = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "PranavBook", "", 2021);
+        });
+
+        Exception spaceAuthor = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "PranavBook", " ", 2021);
+        });
+
+        Exception nullAuthor = assertThrows(IllegalArgumentException.class, ()->{
+            new Book("1234", "PranavBook", null, 2021);
+        });
+
+
+        assertTrue(spaceAuthor.getMessage().contains("Author cannot be null or empty."));
+        assertTrue(emptyAuthor.getMessage().contains("Author cannot be null or empty."));
+        assertTrue(nullAuthor.getMessage().contains("Author cannot be null or empty."));
+    }
 
 
 }
