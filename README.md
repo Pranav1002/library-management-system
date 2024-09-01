@@ -61,5 +61,9 @@ This project includes a suite of unit tests to verify the functionality of the L
   ```
 - This will run all the tests present in 'src/test/java' directory.
 
+## Test Report
+
+I have added Test Report on the repository in both html and pdf format for the reference.
+
 
 # Thank you 
